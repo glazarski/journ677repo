@@ -1,0 +1,128 @@
+---
+title: "practice"
+output: html_document
+date: "2025-01-23"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+
+
+## Practice Stuff
+```{r}
+for (i in 1:10) 
+{
+  print(i)
+  print("hi")
+}
+```
+
+I am typing a _random_ list of things 
+```{r}
+classes = list("Journ", "Journ",  "cs", "Philos")
+classes
+```
+
+# variables
+-Can't use periods and dashes and commas as their use is reserved for other functions
+-Goes over basic variable naming
+-New chunk: command + option + I
+-Run current chunk: command + shift + enter
+```{r}
+a = 5
+thing = "word"
+b = c("A", "B", "C")
+
+print(thing)
+
+#boolean
+#use == to compare
+bool = (10 == 10)
+print(bool)
+
+
+#variables can have functions used on them
+x = 1
+y = 5
+z = x + y
+print(z)
+
+#combine function
+ages = c(1, 10, 15, 80)
+print(ages)
+
+#you can use functions on c()
+ages_plus_one = ages + 1
+print(ages_plus_one)
+
+#you can index c()
+#index starts at 1 
+print(ages[2])
+```
+## Functions
+-Lots of built in functions
+-sum, mean, sqrt, etc.
+```{r}
+x = 1
+y = 2
+z = 3
+
+i = sum(x,y,z)
+j = mean(i)
+
+print(i)
+print(j)
+
+print(summary(ages))
+
+#custom function
+randfunct = function(first, second, third)
+{
+  outcome = (first + second)/third
+  return(outcome)
+}
+
+randfunct(1,2,3)
+```
+## viewing datasets
+-View() shows dataset you want
+-we are using socviz
+
+-titanic$fate shows the row titles of the given column that is named
+```{r}
+#load libary and access titanic dataset
+library(socviz)
+data(titanic)
+
+
+print(titanic$percent)
+print(titanic$percent[1])
+print(mean(titanic$percent))
+```
+## ggplot
+-to make a pipe: control + shift + m
+-always include ggplot(dataset) + geom_ (mapping = aes(x, y, ...))
+-geom_ contains types of plots to create
+```{r}
+#ggplot(gapminder) + geom_point(mapping = aes(lifeExp, gdpPercap))
+
+#smooth and adding color
+#ggplot(gapminder) + geom_smooth(mapping = aes(lifeExp, gdpPercap), color = "cyan")
+
+#usual way of doing it
+#first graph used will be overlapped by the next one used
+#USE THIS METHOD
+ggplot(gapminder, mapping = aes(lifeExp, gdpPercap)) + 
+  geom_point(size = 0.8, alpha = 0.5) +
+  geom_smooth(color = "cyan")
+
+#ggplot(gapminder) will print an empty table
+```
+
+
